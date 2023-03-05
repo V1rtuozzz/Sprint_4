@@ -10,15 +10,15 @@ import java.util.List;
 public class MainPage {
     private WebDriver driver;
 
-    //Заказ в шапке
-    private By upperOrderButton = By.xpath("//*[@id=\"root\"]/div/div/div[1]/div[2]/button[1]");
-    //Заказ внизу
-    private By downOrderButton = By.xpath("//*[@id=\"root\"]/div/div/div[4]/div[2]/div[5]/button");
+    //Кнопка "Заказать" в шапке
+    private By mainOrderButton = By.xpath("//*[@id=\"root\"]/div/div/div[1]/div[2]/button[1]");
+    //Кнопка "Заказать" внизу
+    private By midOrderButton = By.xpath("//*[@id=\"root\"]/div/div/div[4]/div[2]/div[5]/button");
     //Блок вопросов
     private By questionsList = By.className("accordion__button");
     //Блок ответов
     private By answersList = By.className("accordion__panel");
-    //Кукисы
+    //Cookies
     private By cookiesWarning = By.xpath("//*[@id=\"rcc-confirm-button\"]");
 
 
@@ -29,20 +29,20 @@ public class MainPage {
     public void openPage() {
         driver.get("https://qa-scooter.praktikum-services.ru/");
 
-        WebElement cookiesEle = driver.findElement(cookiesWarning);
-        if (cookiesEle.isDisplayed()) {
-            cookiesEle.click();
+        WebElement cookies = driver.findElement(cookiesWarning);
+        if (cookies.isDisplayed()) {
+            cookies.click();
         }
     }
 
-    public void clickUpperOrderButton() {
-        driver.findElement(upperOrderButton).click();
+    public void clickMainOrderButton() {
+        driver.findElement(mainOrderButton).click();
     }
 
-    public void clickDownOrderButton() {
+    public void clickMidOrderButton() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        WebElement element = driver.findElement(downOrderButton);
+        WebElement element = driver.findElement(midOrderButton);
 
         js.executeScript("arguments[0].scrollIntoView();", element);
         element.click();
